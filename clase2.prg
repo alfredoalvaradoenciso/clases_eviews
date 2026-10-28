@@ -1,4 +1,4 @@
-cd "C:\Users\aalvarado\OneDrive - International Monetary Fund (PRD)\Personal\training_eviews_bcrp"
+cd "C:\Users\alfredo\training_eviews_bcrp"
 
 '=====================================================================
 ' CLASE 2 
@@ -85,7 +85,7 @@ g_sim.line(m)                                   ' (m) = un panel por serie
 '     MA(q): ACF se corta en q, PACF decae
 '     ARMA : ambas decaen
 '     I(1) : ACF decae MUY lento (casi 1 en todos los rezagos)
-'Q de Ljung-Box: H0: No hay autocorrelaci髇 en la serie hasta el rezago k
+'Q de Ljung-Box: H0: No hay autocorrelaci贸n en la serie hasta el rezago k
 ar1.correl(20)
 ma1.correl(20)
 arma11.correl(20)
@@ -110,7 +110,7 @@ x_tr.uroot(adf, trend, info=sic)
 
 
 ' Quick > Automatic ARIMA Forecasting
-' Estima usando toda la muestra 200 y escoge el menor valor de BIC (evaluaci髇 dentro de la muestra)
+' Estima usando toda la muestra 200 y escoge el menor valor de BIC (evaluaci贸n dentro de la muestra)
 
 ar1.autoarma(tform=none, select=sic, smpl="1 200", agraph, atable) ar1_f c
 ma1.autoarma(tform=none, select=sic, smpl="1 200", agraph, atable) ma1_f c
@@ -176,7 +176,7 @@ eq3_0.auto(2)                       ' Breusch-Godfrey LM, 2 rezagos
 
 'Interpretacion del coeficiente: 
 '	Logaritmos: cambios porcentuales del PBI; 
-'	Diferencias logar韙micas: cambios en crecimiento, medidos en puntos porcentuales.
+'	Diferencias logar铆tmicas: cambios en crecimiento, medidos en puntos porcentuales.
 
 ' 3b. Agregar el rezago propio y de la covariable
 equation eq3_1.ls d(lrgdp_fiji) c d(lrgdp_fiji(-1)) d(lrgdp_aus) d(lrgdp_aus(-1))
@@ -237,7 +237,7 @@ import "Fiji.xlsx" range=Fiji_new colhead=1 na="#N/A" @id @date(date) @smpl @all
 equation eqcovid1.ls dlog(rgdp_fiji) c dlog(rgdp_aus)
 eqcovid1.chow 2020                     ' Cambio estructural en Covid
 
- ' Impulso: Solo el impacto puntual de 2020 + Escal髇: El cambio permanente que inicia en 2021
+ ' Impulso: Solo el impacto puntual de 2020 + Escal贸n: El cambio permanente que inicia en 2021
 equation eqcovid2.ls dlog(rgdp_fiji) c dlog(rgdp_aus) (@year=2020)   (@year>=2021)                 
 
 
@@ -252,12 +252,12 @@ group g_eg lrgdp_fiji lrgdp_aus
 g_eg.coint(method=eg)
 g_eg.coint(method=eg, trend=linear)
 
-' Test de cointegracion de Engle Granger: solo constante, rezagos por criterio SIC (m醲. 9) -> 0 rezagos, valores p de MacKinnon (1996), n efectivo = 43.
-' Resultado: evidencia moderada de cointegraci髇 entre LRGDP_FIJI y LRGDP_AUS (tau p = 0.026 y 0.045; z-stat de AUS p = 0.065 no rechaza H0) con constante pero debil con constante+tendencia
+' Test de cointegracion de Engle Granger: solo constante, rezagos por criterio SIC (m谩x. 9) -> 0 rezagos, valores p de MacKinnon (1996), n efectivo = 43.
+' Resultado: evidencia moderada de cointegraci贸n entre LRGDP_FIJI y LRGDP_AUS (tau p = 0.026 y 0.045; z-stat de AUS p = 0.065 no rechaza H0) con constante pero debil con constante+tendencia
 
 equation eq5_coint1.cointreg(method=fmols, trend=const) lrgdp_fiji lrgdp_aus
 equation eq5_coint2.cointreg(method=fmols, trend=linear) lrgdp_fiji lrgdp_aus
-' Hansen Lc (H0: cointegraci髇): no rechaza con C (p=0.17) ni con C T (p>0.20) -> consistente con cointegraci髇 hallada con el test de Engle Granger
+' Hansen Lc (H0: cointegraci贸n): no rechaza con C (p=0.17) ni con C T (p>0.20) -> consistente con cointegraci贸n hallada con el test de Engle Granger
 
 
 '=====================================================================
@@ -284,7 +284,7 @@ eq6_proj.fit(e, g) lf_sta lf_sta_se      ' ESTATICO: un paso adelante con datos 
 ' Pregunta para la clase: por que estatico y dinamico coinciden en 2009?
 
 
-'En 2009 ambos m閠odos parten del mismo valor inicial rezagado, el cual es el dato real observado de 2008. Divergen a partir de 2010: El din醡ico empieza a alimentar el modelo con sus propios valores proyectados, mientras el est醫ico sigue usando datos observados.
+'En 2009 ambos m茅todos parten del mismo valor inicial rezagado, el cual es el dato real observado de 2008. Divergen a partir de 2010: El din谩mico empieza a alimentar el modelo con sus propios valores proyectados, mientras el est谩tico sigue usando datos observados.
 
 
 
@@ -359,7 +359,7 @@ show gr_dif
 'SOLUCION ESTOCASTICA
 
 ' Solve estocastico: s=b guarda medias y bandas de confianza (95% por defecto)
-' r=1000 : N鷐ero de repeticiones (1000 por defecto)
+' r=1000 : N煤mero de repeticiones (1000 por defecto)
 ' i=n :  innovaciones para repeticiones ~ Normal (por defecto); para bootstrap usar i=b
 smpl 2000 2013
 m_fiji.stochastic(i=n, r=1000)
@@ -369,8 +369,8 @@ smpl 1995 2013
 
 ' Grafico automatico del modelo. Opciones del makegraph:
 ' a   : Muestra la serie real (actuals).
-' c   : Muestra el escenario base/de comparaci髇.
-' s=b : Dibuja la media y las bandas de confianza estoc醩ticas.
+' c   : Muestra el escenario base/de comparaci贸n.
+' s=b : Dibuja la media y las bandas de confianza estoc谩sticas.
 delete(noerr) gr_sto
 m_fiji.makegraph(a, c, s=b) gr_sto rgdp_fiji
 show gr_sto
