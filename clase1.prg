@@ -9,7 +9,7 @@
 '---------------------------------------------------------------------
 ' BLOQUE 0. Directorio de trabajo
 '---------------------------------------------------------------------
-cd "C:\Users\aalvarado\OneDrive - International Monetary Fund (PRD)\Personal\training_eviews_bcrp"
+cd "C:\Users\alfredo\training_eviews_bcrp"
 
 close @objects                    ' cierra ventanas abiertas
 
