@@ -66,11 +66,11 @@ Objetivos:
 - ampliar la capacidad analítica del usuario,
 - comunicar resultados con visualizaciones más profesionales.
 
-## Estructura sugerida del repositorio
+## Estructura
 
 ```text
 clases_eviews/
-├── data/                  # Bases de datos y archivos de entrada
+├── data/               # Bases de datos y archivos de entrada
 ├── code/               # Programas y comandos de EViews
-├── slides/                # Material de apoyo o presentaciones
-├── README.md              # Documentación principal
+├── slides/             # Material de apoyo o presentaciones
+├── README.md           # Documentación principal
