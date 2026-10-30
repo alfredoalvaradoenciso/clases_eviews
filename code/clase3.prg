@@ -122,7 +122,7 @@ scalar n = 4  ' Se conserva en el workfile
 show %texto
 
 ' Ejemplo de loops
-'inicia el bucle con !i = 1 y establece que llegar· hasta 3.
+'inicia el bucle con !i = 1 y establece que llegar√° hasta 3.
 for !i = 1 to 3
     show !i
 next
@@ -181,7 +181,7 @@ show %v
 
 %texto = "ABCDEF"
 !pos1 = @instr(%texto, "CD")
-show !pos1 ' Encuentra "CD" en la tercera posiciÛn.
+show !pos1 ' Encuentra "CD" en la tercera posici√≥n.
 
 
 
@@ -315,7 +315,7 @@ smpl {%esmpl}
 eq.makemodel({%modname}) 
 '=============== Main Fan Chart Program==============
 
-''%quant_array guarda los niveles de confianza de las bandas, p.ej. "90 60 30 1" si !numb=3. 'EViews usa cada nivel para calcular una banda en cada simulaciÛn estoc·stica.
+''%quant_array guarda los niveles de confianza de las bandas, p.ej. "90 60 30 1" si !numb=3. 'EViews usa cada nivel para calcular una banda en cada simulaci√≥n estoc√°stica.
 
 %quant_array="90 "
 !quant_step=90/!numb
@@ -327,11 +327,11 @@ wend
 %quant_array=%quant_array+"1"
 
 
-'Recorremos cada nivel: simulamos el modelo al 90%, guardamos los lÌmites, y repetimos 'para 60% y 30%. La corrida al 1% da la lÌnea central (en la pr·ctica, la mediana). 
+'Recorremos cada nivel: simulamos el modelo al 90%, guardamos los l√≠mites, y repetimos 'para 60% y 30%. La corrida al 1% da la l√≠nea central (en la pr√°ctica, la mediana). 
 
 'Para cada trimestre hay !num_simul escenarios de la var. dependiente, generados con el 'modelo estimado y distintos errores (bootstrap o normal). 
 
-'P.ej., cuando %quant=60, !alfa_ratio=0.6: EViews ordena los escenarios de menor a mayor, 'recorta el 20% m·s bajo y el 20% m·s alto, y devuelve los lÌmites. Repitiendo con 90%, '60% y 30% obtenemos las capas del abanico.
+'P.ej., cuando %quant=60, !alfa_ratio=0.6: EViews ordena los escenarios de menor a mayor, 'recorta el 20% m√°s bajo y el 20% m√°s alto, y devuelve los l√≠mites. Repitiendo con 90%, '60% y 30% obtenemos las capas del abanico.
 
 delete(noerr) g2
 group g2
@@ -361,7 +361,7 @@ for %quant {%quant_array}
 	{%modname}.solveopt(s=b,d=d)
 	{%modname}.solve
 	
-	'Limitamos la muestra a un solo trimestre, el ˙ltimo observado, y ahÌ forzamos que el lÌmite superior y el inferior sean iguales al dato real. AsÌ el abanico nace de un punto conocido y se abre hacia el futuro.
+	'Limitamos la muestra a un solo trimestre, el √∫ltimo observado, y ah√≠ forzamos que el l√≠mite superior y el inferior sean iguales al dato real. As√≠ el abanico nace de un punto conocido y se abre hacia el futuro.
 
 	%first_elem_fsmpl=@wleft(%fsmpl,1)
 	%second_elem_fsmpl=@wright(%fsmpl,1)
@@ -372,7 +372,7 @@ for %quant {%quant_array}
 
 	smpl {%first_elem_fsmpl}-6 {%second_elem_fsmpl}
 
-'Cada simulaciÛn deja sus resultados en las mismas dos series, asÌ que en cada vuelta las guardamos con el nivel de confianza en el nombre antes de que se sobrescriban. DespuÈs las vamos agregando al grupo en pares, inferior y superior, porque asÌ las lee el gr·fico de bandas.
+'Cada simulaci√≥n deja sus resultados en las mismas dos series, as√≠ que en cada vuelta las guardamos con el nivel de confianza en el nombre antes de que se sobrescriban. Despu√©s las vamos agregando al grupo en pares, inferior y superior, porque as√≠ las lee el gr√°fico de bandas.
 
 	if !alfa<3 then
 		%quant="0"
@@ -384,7 +384,7 @@ for %quant {%quant_array}
 next
 
 
-'DespuÈs de congelar el gr·fico, pintamos cada banda con un verde un poco m·s oscuro que la anterior: la del 90% es la m·s clara y el centro el m·s oscuro. AsÌ la vista se va directo a los escenarios m·s probables. El ˙ltimo elemento es el dato observado, en azul y grueso
+'Despu√©s de congelar el gr√°fico, pintamos cada banda con un verde un poco m√°s oscuro que la anterior: la del 90% es la m√°s clara y el centro el m√°s oscuro. As√≠ la vista se va directo a los escenarios m√°s probables. El √∫ltimo elemento es el dato observado, en azul y grueso
 
 series p1={%varname}
 g2.add {%varname} p1
